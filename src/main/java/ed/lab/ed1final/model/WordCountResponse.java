@@ -11,19 +11,10 @@ public class WordCountResponse {
         this.wordsEqualTo = wordsEqualTo;
     }
 
-    public String getWord() {
-        return word;
-    }
+    public String getWord() { return word; }
+    public void setWord(String word) { this.word = word; }
 
-    public void setWord(String word) {
-        this.word = word;
-    }
-
-    public int getWordsEqualTo() {
-        return wordsEqualTo;
-    }
-
-    public void setWordsEqualTo(int wordsEqualTo) {
-        this.wordsEqualTo = wordsEqualTo;
-    }
+    public int getWordsEqualTo() { return wordsEqualTo; }
+    public void setWordsEqualTo(int wordsEqualTo) { this.wordsEqualTo = wordsEqualTo; }
 }
+

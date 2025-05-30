@@ -1,29 +1,19 @@
 package ed.lab.ed1final.model;
 
 public class PrefixCountResponse {
-    private String word;
+    private String prefix;
     private int wordsStartingWith;
 
     public PrefixCountResponse() {}
 
-    public PrefixCountResponse(String word, int wordsStartingWith) {
-        this.word = word;
+    public PrefixCountResponse(String prefix, int wordsStartingWith) {
+        this.prefix = prefix;
         this.wordsStartingWith = wordsStartingWith;
     }
 
-    public String getWord() {
-        return word;
-    }
+    public String getPrefix() { return prefix; }
+    public void setPrefix(String prefix) { this.prefix = prefix; }
 
-    public void setWord(String word) {
-        this.word = word;
-    }
-
-    public int getWordsStartingWith() {
-        return wordsStartingWith;
-    }
-
-    public void setWordsStartingWith(int wordsStartingWith) {
-        this.wordsStartingWith = wordsStartingWith;
-    }
+    public int getWordsStartingWith() { return wordsStartingWith; }
+    public void setWordsStartingWith(int wordsStartingWith) { this.wordsStartingWith = wordsStartingWith; }
 }

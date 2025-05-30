@@ -20,40 +20,32 @@ public class TrieController {
 
     @PostMapping("/{word}")
     public ResponseEntity<Void> addWord(@PathVariable String word) {
-        try {
-            CreateTrieRequest request;
-            if (word == null || word.isEmpty()) {
-                return ResponseEntity.badRequest().build();
-            }
-            trieService.insertWord(word.toLowerCase());
-            return ResponseEntity.status(HttpStatus.CREATED).build();
-        } catch (IllegalArgumentException e) {
+        if (!word.matches("[a-z]+")) {
             return ResponseEntity.badRequest().build();
         }
+        trieService.insertWord(word);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+
 
     @GetMapping("/{word}/count")
     public ResponseEntity<WordCountResponse> countWord(@PathVariable String word) {
-        try {
-            int count = trieService.countWordsEqualTo(word.toLowerCase());
-            WordCountResponse response = new WordCountResponse(word, count);
-            return ResponseEntity.ok(response);
-        } catch (IllegalArgumentException e) {
+        if (!word.matches("[a-z]+")) {
             return ResponseEntity.badRequest().build();
         }
+        int count = trieService.countWordsEqualTo(word);
+        return ResponseEntity.ok(new WordCountResponse(word, count));
     }
-
 
     @GetMapping("/{prefix}/prefix")
     public ResponseEntity<PrefixCountResponse> countPrefix(@PathVariable String prefix) {
-        try {
-            int count = trieService.countWordsStartingWith(prefix.toLowerCase());
-            PrefixCountResponse response = new PrefixCountResponse(prefix, count);
-            return ResponseEntity.ok(response);
-        } catch (IllegalArgumentException e) {
+        if (!prefix.matches("[a-z]+")) {
             return ResponseEntity.badRequest().build();
         }
+        int count = trieService.countWordsStartingWith(prefix);
+        return ResponseEntity.ok(new PrefixCountResponse(prefix, count));
     }
+
 
 
     @DeleteMapping("/{word}")
