@@ -1,5 +1,6 @@
 package ed.lab.ed1final;
 
+import ed.lab.ed1final.trie.Trie;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
