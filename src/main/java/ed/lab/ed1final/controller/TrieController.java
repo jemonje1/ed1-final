@@ -1,6 +1,8 @@
 package ed.lab.ed1final.controller;
 
 import ed.lab.ed1final.model.CreateTrieRequest;
+import ed.lab.ed1final.model.PrefixCountResponse;
+import ed.lab.ed1final.model.WordCountResponse;
 import ed.lab.ed1final.service.TrieService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,24 +33,28 @@ public class TrieController {
     }
 
     @GetMapping("/{word}/count")
-    public ResponseEntity<Integer> countWord(@PathVariable String word) {
+    public ResponseEntity<WordCountResponse> countWord(@PathVariable String word) {
         try {
             int count = trieService.countWordsEqualTo(word.toLowerCase());
-            return ResponseEntity.ok(count);
+            WordCountResponse response = new WordCountResponse(word, count);
+            return ResponseEntity.ok(response);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().build();
         }
     }
 
+
     @GetMapping("/{prefix}/prefix")
-    public ResponseEntity<Integer> countPrefix(@PathVariable String prefix) {
+    public ResponseEntity<PrefixCountResponse> countPrefix(@PathVariable String prefix) {
         try {
             int count = trieService.countWordsStartingWith(prefix.toLowerCase());
-            return ResponseEntity.ok(count);
+            PrefixCountResponse response = new PrefixCountResponse(prefix, count);
+            return ResponseEntity.ok(response);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().build();
         }
     }
+
 
     @DeleteMapping("/{word}")
     public ResponseEntity<Void> eraseWord(@PathVariable String word) {

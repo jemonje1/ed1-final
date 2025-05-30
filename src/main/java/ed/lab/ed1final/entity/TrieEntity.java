@@ -1,6 +1,11 @@
 package ed.lab.ed1final.entity;
 
+import com.fasterxml.jackson.annotation.JsonTypeId;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
 public class TrieEntity {
+    private long id;
+
     private TrieEntity[] children;
     private int wordCount;    //
     private int prefixCount;  //
